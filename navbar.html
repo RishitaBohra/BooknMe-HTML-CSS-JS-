@@ -8,6 +8,45 @@
       <li><a href="myposts.html">My Posts</a></li>
        <li><a href="community.html">Community</a></li>
        <li><a href="merchandise.html">Merchandise</a></li>
+       <li>
+      <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </li>
+     <li><button id="account-btn" class="account-btn">👤</button></li>
+
     </ul>
   </div>
 </nav>
+
+<!-- Account Sidebar -->
+<div class="account-sidebar" id="account-sidebar">
+  <div class="sidebar-header">
+    <h3>My Account</h3>
+    <span id="close-account-sidebar">&times;</span>
+  </div>
+  
+  <div class="sidebar-content">
+    <div class="avatar-container">
+      <img src="images/default-avatar.png" alt="Profile Picture" class="sidebar-avatar" id="profile-avatar">
+      
+      <!-- Avatar Selection Options -->
+      <div class="avatar-selection" id="avatar-selection" style="display: none;">
+        <p>Select Avatar:</p>
+        <img src="images/male-avatar.png" alt="Male Avatar" class="avatar-option" data-avatar="images/male-avatar.png">
+        <img src="images/female-avatar.png" alt="Female Avatar" class="avatar-option" data-avatar="images/female-avatar.png">
+      </div>
+    </div>
+
+    <p><strong id="sidebar-username">Username</strong></p>
+    <p id="sidebar-email">email@example.com</p>
+    <p id="sidebar-member">Member since: N/A</p>
+
+    <ul class="sidebar-links">
+      <li><a href="myposts.html">📄 My Posts</a></li>
+      <li><a href="post.html">✏️ Create Post</a></li>
+      <li><a href="community.html">👥 Community</a></li>
+      <li><button id="sidebar-theme-toggle" class="theme-btn">🌙 Dark Mode</button></li>
+    </ul>
+
+    <button id="logout-btn" class="logout-btn">Logout</button>
+  </div>
+</div>

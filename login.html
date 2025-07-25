@@ -1,28 +1,35 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login / Register | BooknMe 2024</title>
+  <title>Login | BooknMe</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div id="navbar"></div>
-
   <main class="auth-container">
     <div class="auth-form-section">
-      <h2 id="form-title">Login to BooknMe</h2>
+      <h2>Login to BooknMe</h2>
       
       <form id="auth-form">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="password" id="password" placeholder="Password" required />
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+
         <button type="submit" class="auth-btn">Login</button>
       </form>
 
       <p class="toggle-text">
-        Don't have an account?
-        <span id="toggle-link">Register here</span>
+        Don't have an account? <a href="register.html">Register here</a>
       </p>
     </div>
 
@@ -30,52 +37,8 @@
       <img src="images/login-book.png" alt="Books" />
     </div>
   </main>
-
-  <div id="footer"></div>
+<div id="footer"></div>
 
   <script src="script.js"></script>
-  <script>
-    const formTitle = document.getElementById('form-title');
-    const authForm = document.getElementById('auth-form');
-    const authBtn = document.querySelector('.auth-btn');
-    const toggleText = document.querySelector('.toggle-text');
-    const toggleLink = document.getElementById('toggle-link');
-
-    let isLogin = true;
-
-    toggleLink.addEventListener('click', () => {
-      isLogin = !isLogin;
-      if(isLogin){
-        formTitle.textContent = 'Login to BooknMe';
-        authBtn.textContent = 'Login';
-        toggleText.innerHTML = `Don't have an account? <span id="toggle-link">Register here</span>`;
-      } else {
-        formTitle.textContent = 'Register on BooknMe';
-        authBtn.textContent = 'Register';
-        toggleText.innerHTML = `Already have an account? <span id="toggle-link">Login here</span>`;
-      }
-      // Reassign event listener to new span
-      document.getElementById('toggle-link').addEventListener('click', toggleLinkClick);
-    });
-
-    function toggleLinkClick() {
-      toggleLink.click();
-    }
-
-    authForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if(username && password){
-        localStorage.setItem('loggedInUser', username);
-        alert(isLogin ? 'Login successful!' : 'Registration successful!');
-        window.location.href = 'index.html';
-      } else {
-        alert('Please fill all fields.');
-      }
-    });
-  </script>
-
 </body>
 </html>

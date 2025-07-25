@@ -13,62 +13,64 @@
   <main class="container community-page">
     <h2 class="section-title">Community Posts</h2>
 
+    <input type="text" id="search-input" placeholder="Search posts..." />
+
     <div id="community-list" class="community-list">
-      <!-- Community posts will appear here -->
+
     </div>
   </main>
 
-
+  <div id="footer"></div>
 
   <script src="script.js"></script>
   <script>
     const communityList = document.getElementById('community-list');
+    const searchInput = document.getElementById('search-input');
 
-    // Dummy community posts (can be replaced with API or DB)
-    const communityPosts = [
-      {
-        username: 'Aditi Sharma',
-        title: 'Romantic Twist on Classic Love Story',
-        category: 'Romance',
-        content: 'I rewrote the ending so they finally reunite under the cherry blossoms.'
-      },
-      {
-        username: 'Rohan Verma',
-        title: 'Mystery Reimagined',
-        category: 'Mystery',
-        content: 'In my version, the real thief is the loyal butler, plotting revenge!'
-      },
-      {
-        username: 'Meera Kapoor',
-        title: 'Sci-Fi Surprise',
-        category: 'Sci-Fi',
-        content: 'I added a time portal that lets the hero meet their future self.'
-      }
-    ];
+ 
+    const communityPosts = JSON.parse(localStorage.getItem('myPosts')) || [];
 
-    if(communityPosts.length === 0) {
-      communityList.innerHTML = `<p>No community posts yet. Be the first to share your ideas!</p>`;
-    } else {
-      communityPosts.forEach(post => {
-        const postCard = document.createElement('div');
-        postCard.className = 'post-card';
-        postCard.innerHTML = `
-          <h3>${post.title}</h3>
-          <p><strong>By:</strong> ${post.username} | <strong>Category:</strong> ${post.category}</p>
-          <p>${post.content}</p>
-          <button class="like-btn">❤️ Like</button>
-        `;
-        communityList.appendChild(postCard);
-      });
+    function displayPosts(posts){
+      communityList.innerHTML = '';
 
-      // Add simple like button functionality
-      document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.textContent = '❤️ Liked!';
-          btn.disabled = true;
+      if(posts.length === 0){
+        communityList.innerHTML = `<p>No posts found.</p>`;
+      } else {
+        posts.forEach(post => {
+          const postCard = document.createElement('div');
+          postCard.className = 'post-card';
+          postCard.innerHTML = `
+            <h3>${post.title}</h3>
+            <p><strong>By:</strong> ${post.username || 'Anonymous'} | <strong>Category:</strong> ${post.category}</p>
+            <p>${post.content}</p>
+            <button class="like-btn">❤️ Like</button>
+          `;
+          communityList.appendChild(postCard);
         });
-      });
+
+
+        document.querySelectorAll('.like-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            btn.textContent = '❤️ Liked!';
+            btn.disabled = true;
+          });
+        });
+      }
     }
+
+
+    displayPosts(communityPosts);
+
+
+    searchInput.addEventListener('input', function(){
+      const keyword = this.value.toLowerCase();
+      const filtered = communityPosts.filter(post =>
+        post.title.toLowerCase().includes(keyword) ||
+        post.content.toLowerCase().includes(keyword) ||
+        post.category.toLowerCase().includes(keyword)
+      );
+      displayPosts(filtered);
+    });
   </script>
 
 </body>

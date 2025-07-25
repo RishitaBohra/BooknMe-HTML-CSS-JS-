@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Post | BooknMe 2024</title>
+  <title>Post | BooknMe</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,33 +20,35 @@
     </form>
   </main>
 
-
-
   <script src="script.js"></script>
   <script>
-    // Get category from URL and display
+
     const params = new URLSearchParams(window.location.search);
     const category = params.get('category');
     document.getElementById('post-category-title').textContent = `Create a Post in ${category}`;
 
-    // Handle form submission (demo - store in localStorage)
+
     document.getElementById('post-form').addEventListener('submit', function(e){
       e.preventDefault();
-      const title = document.getElementById('post-title').value;
-      const content = document.getElementById('post-content').value;
+      
+      const title = document.getElementById('post-title').value.trim();
+      const content = document.getElementById('post-content').value.trim();
+      const username = localStorage.getItem('loggedInUser') || 'Anonymous'; 
+      const date = new Date().toLocaleString();
+      const id = Date.now(); 
 
-      const newPost = {
-        title,
-        category,
-        content
-      };
+      if(title && content){
+        const newPost = { id, title, content, category, username, date };
 
-      let myPosts = JSON.parse(localStorage.getItem('myPosts')) || [];
-      myPosts.push(newPost);
-      localStorage.setItem('myPosts', JSON.stringify(myPosts));
+        let myPosts = JSON.parse(localStorage.getItem('myPosts')) || [];
+        myPosts.push(newPost);
+        localStorage.setItem('myPosts', JSON.stringify(myPosts));
 
-      alert('Post submitted!');
-      window.location.href = 'myposts.html';
+        alert('Post submitted successfully!');
+        window.location.href = 'myposts.html';
+      } else {
+        alert('Please fill all fields.');
+      }
     });
   </script>
 
