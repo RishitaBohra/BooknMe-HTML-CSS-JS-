@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community | BooknMe 2024</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="container community-page">
+    <h2 class="section-title">Community Posts</h2>
+
+    <div id="community-list" class="community-list">
+      <!-- Community posts will appear here -->
+    </div>
+  </main>
+
+
+
+  <script src="script.js"></script>
+  <script>
+    const communityList = document.getElementById('community-list');
+
+    // Dummy community posts (can be replaced with API or DB)
+    const communityPosts = [
+      {
+        username: 'Aditi Sharma',
+        title: 'Romantic Twist on Classic Love Story',
+        category: 'Romance',
+        content: 'I rewrote the ending so they finally reunite under the cherry blossoms.'
+      },
+      {
+        username: 'Rohan Verma',
+        title: 'Mystery Reimagined',
+        category: 'Mystery',
+        content: 'In my version, the real thief is the loyal butler, plotting revenge!'
+      },
+      {
+        username: 'Meera Kapoor',
+        title: 'Sci-Fi Surprise',
+        category: 'Sci-Fi',
+        content: 'I added a time portal that lets the hero meet their future self.'
+      }
+    ];
+
+    if(communityPosts.length === 0) {
+      communityList.innerHTML = `<p>No community posts yet. Be the first to share your ideas!</p>`;
+    } else {
+      communityPosts.forEach(post => {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        postCard.innerHTML = `
+          <h3>${post.title}</h3>
+          <p><strong>By:</strong> ${post.username} | <strong>Category:</strong> ${post.category}</p>
+          <p>${post.content}</p>
+          <button class="like-btn">❤️ Like</button>
+        `;
+        communityList.appendChild(postCard);
+      });
+
+      // Add simple like button functionality
+      document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.textContent = '❤️ Liked!';
+          btn.disabled = true;
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

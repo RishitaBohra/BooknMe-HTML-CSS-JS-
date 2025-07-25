@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post | BooknMe 2024</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="container post-page">
+    <h2 id="post-category-title" class="section-title">Create a Post</h2>
+
+    <form id="post-form" class="post-form">
+      <input type="text" id="post-title" placeholder="Enter your post title" required />
+      <textarea id="post-content" placeholder="Write your story, ending, or plot here..." required></textarea>
+      <button type="submit" class="post-btn">Submit</button>
+    </form>
+  </main>
+
+
+
+  <script src="script.js"></script>
+  <script>
+    // Get category from URL and display
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    document.getElementById('post-category-title').textContent = `Create a Post in ${category}`;
+
+    // Handle form submission (demo - store in localStorage)
+    document.getElementById('post-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const title = document.getElementById('post-title').value;
+      const content = document.getElementById('post-content').value;
+
+      const newPost = {
+        title,
+        category,
+        content
+      };
+
+      let myPosts = JSON.parse(localStorage.getItem('myPosts')) || [];
+      myPosts.push(newPost);
+      localStorage.setItem('myPosts', JSON.stringify(myPosts));
+
+      alert('Post submitted!');
+      window.location.href = 'myposts.html';
+    });
+  </script>
+
+</body>
+</html>

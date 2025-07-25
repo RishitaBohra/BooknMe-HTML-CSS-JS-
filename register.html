@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | BooknMe </title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="auth-container">
+    <div class="auth-form-section">
+      <h2>Register on BooknMe</h2>
+      
+      <form id="register-form" class="register-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" class="auth-btn">Register</button>
+      </form>
+
+      <p class="toggle-text">
+        Already have an account?
+        <a href="login.html">Login here</a>
+      </p>
+    </div>
+
+    <div class="auth-image-section">
+      <img src="images/register-book.png" alt="Register Books Image" />
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if(username && email && password){
+        localStorage.setItem('loggedInUser', username);
+        alert('Registration successful!');
+        window.location.href = 'index.html';
+      } else {
+        alert('Please fill all fields.');
+      }
+    });
+  </script>
+
+</body>
+</html>

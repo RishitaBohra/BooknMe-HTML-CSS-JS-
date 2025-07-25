@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Posts | BooknMe 2024</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="container myposts-page">
+    <h2 class="section-title">My Posts</h2>
+
+    <div id="posts-list" class="posts-list">
+      <!-- User posts will appear here -->
+    </div>
+  </main>
+
+
+
+  <script src="script.js"></script>
+  <script>
+    // Dummy posts demo for localStorage
+    const postsList = document.getElementById('posts-list');
+    const username = localStorage.getItem('loggedInUser') || 'Guest';
+
+    // Simulated posts array
+    const myPosts = JSON.parse(localStorage.getItem('myPosts')) || [
+      {
+        title: 'Alternate Ending for The Great Mystery',
+        category: 'Mystery',
+        content: 'I imagined the detective revealing a secret twin instead!'
+      },
+      {
+        title: 'Sci-Fi Plot Twist',
+        category: 'Sci-Fi',
+        content: 'In my version, the aliens were friendly guardians all along.'
+      }
+    ];
+
+    if(myPosts.length === 0) {
+      postsList.innerHTML = `<p>You haven’t posted anything yet. Start rewriting your favorite stories!</p>`;
+    } else {
+      myPosts.forEach(post => {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        postCard.innerHTML = `
+          <h3>${post.title}</h3>
+          <p><strong>Category:</strong> ${post.category}</p>
+          <p>${post.content}</p>
+        `;
+        postsList.appendChild(postCard);
+      });
+    }
+  </script>
+
+</body>
+</html>

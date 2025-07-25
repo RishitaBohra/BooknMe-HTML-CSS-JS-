@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BooknMe </title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ <div id="navbar"></div>
+
+ <header class="hero container">
+    <h2>Where Readers Become Writers ✨</h2>
+    <p>Create your own endings, share your plots, and connect with a vibrant book community.</p>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Choose a Category</h2>
+    <div class="categories-grid">
+      <div class="category-card fiction" onclick="goToPost('Fiction')">📖 Fiction</div>
+      <div class="category-card mystery" onclick="goToPost('Mystery')">🕵️ Mystery</div>
+      <div class="category-card romance" onclick="goToPost('Romance')">💌 Romance</div>
+      <div class="category-card scifi" onclick="goToPost('Sci-fi')">🚀 Sci-fi</div>
+      <div class="category-card fantasy" onclick="goToPost('Fantasy')">🐉 Fantasy</div>
+    </div>
+
+    <!-- New Features Section -->
+    <section class="features">
+      <h2 class="section-title">Why BooknMe?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>📚 Unlimited Creativity</h3>
+          <p>Rewrite endings, imagine alternate plots, or write entirely new stories inspired by books you love.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🌎 Community Driven</h3>
+          <p>Connect with readers and writers globally, read their versions, and gain feedback on your creativity.</p>
+        </div>
+        <div class="feature-card">
+          <h3>🛍️ Merchandise</h3>
+          <p>Create and share custom book-inspired merchandise with your plots and designs soon (coming feature).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2 class="section-title">What Our Users Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"BooknMe helped me explore my creative side. I love reading other people's endings!"</p>
+          <h4>- Aditi Sharma</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>"Finally a platform where I can share alternate plots I imagine after reading books."</p>
+          <h4>- Rohan Verma</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action Section -->
+
+<section class="cta">
+  <div class="cta-content">
+    <h2>✨ Ready to Create Your Own Ending?</h2>
+    <p>Join our vibrant community and let your imagination redefine stories.</p>
+    <a href="login.html" class="cta-btn">Get Started</a>
+  </div>
+</section>
+
+
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+    <script >
+          function goToPost(category){
+  window.location.href = `post.html?category=${encodeURIComponent(category)}`;
+}
+
+    </script>
+
+</body>
+</html>
